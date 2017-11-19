@@ -3,6 +3,7 @@
   <title>API Example</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
   <script type="text/javascript">
     var accessToken = "a3d7bfa4b7a54289a1c4622aeab6daca";
     var baseUrl = "https://api.api.ai/v1/";
@@ -92,6 +93,11 @@
   </style>
 </head>
 <body>
+  <div>
+    <input onclick='responsiveVoice.speak("asshole");' type='button' value='🔊 Play' />
+  </div>
+
+  
   <div>
     <input id="input" type="text"> <button id="rec">Speak</button>
     <br>Response<br> <textarea id="response" cols="40" rows="20"></textarea>

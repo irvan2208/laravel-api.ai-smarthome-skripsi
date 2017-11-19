@@ -175,7 +175,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -223,8 +226,13 @@ return [
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
+        'Role' => App\Models\Role::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Homes' => App\Models\Home::class,
+        'Users' => App\Models\User::class,
 
     ],
 

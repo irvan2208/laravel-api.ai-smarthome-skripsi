@@ -11,10 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+// Route::get('/', function () {
+//     if (Auth::check()) {
+//         if (Auth::user()->hasRole('admin')) {
+//             return redirect()->route('admin.dashboard');
+//         }
+//     } else {
+//         return view('welcome');
+//     }
+// });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test', 'VoiceController@test')->name('test');
+
+Route::resource('admin/user', 'UserController');
+Route::resource('admin/home', 'HomeController');
+
+Route::post('admin/user/lists', 'UserController@dataTable')->name('users.list');
+Route::post('admin/home/lists', 'HomeController@dataTable')->name('homes.list');
+
+
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
+    Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
+
+    // DataTable Routes
+});
