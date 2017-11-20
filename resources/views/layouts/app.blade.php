@@ -13,17 +13,32 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="{{url('/')}}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/')}}/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <!-- Custom CSS -->
+    <link href="{{url('/')}}/css/style.min.css" rel="stylesheet">
+    @stack('pushStyle')
 </head>
 <body>
-    <div class="navbar navbar-fixed-bottom">
-    <!-- Rest of nav bar chopped from here -->asdf
-    </div>
-    <div class="container-fluid fill">
+    <div class="container-fluid nopadding" id="map">
+        <div class="container">
+            <div class="col-md-12 text-center">
+                <img style="width: 30%;padding: 12px;" id="lqt-logo" src="{{ URL('/').'/img/logo.png' }}">
+            </div>
+        </div>
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+<!-- jQuery -->
+    <script src="{{url('/')}}/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+    <script src="{{url('/')}}/bootstrap/dist/js/tether.min.js"></script>
+    <script src="{{url('/')}}/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{url('/')}}/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+    @stack('pushScript')
 </html>

@@ -11,13 +11,13 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="white-box">
-            <div class="row">
-                <div class="col-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="search" placeholder="Search..." />
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+          <div class="col-3">
+              <div class="form-group">
+                  <input type="text" class="form-control" id="search" placeholder="Search..." />
+              </div>
+          </div>
+      </div>
 			<div class="table-responsive">
 				<table id="type-table" class="table table-striped">
 					<thead>

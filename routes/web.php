@@ -26,6 +26,7 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'FrontendController@index')->name('homepage');
 
 Route::get('/test', 'VoiceController@test')->name('test');
 
