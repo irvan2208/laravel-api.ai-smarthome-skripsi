@@ -17,8 +17,8 @@ class FrontendController extends Controller
 	}
     public function index()
     {
-        // $weather = $this->forecast->get('1.124107','104.09778183');
-    	$weather = NULL;
+        $weather = $this->forecast->get('1.124107','104.09778183');
+    	// $weather = NULL;
         $room = Entity::where('type',EntityType::ROOM)->get();
     	$aircons = Entity::where('type',EntityType::AIRCON)->get();
         // dd($room);
