@@ -4,12 +4,11 @@
 <style type="text/css">
   .map{
     text-align:center;
-    padding-top:5%;
 }
 
 .map svg {
     height: auto;
-    width: 100%;
+    /*width: 100%;*/
     margin: 0 auto;
     display: block;
 }

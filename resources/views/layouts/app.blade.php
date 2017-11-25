@@ -16,7 +16,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{url('/')}}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{url('/')}}/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{url('/')}}/bootstrap/dist/css/bootstrap.css">
     <!-- Web fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,600,700&Open+Sans:300,400,600,700">
     <!-- Custom CSS -->
