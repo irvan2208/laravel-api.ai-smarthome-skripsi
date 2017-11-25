@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Nwidart\LaravelForecast\LaravelForecastServiceProvider::class
 
     ],
 
@@ -233,6 +234,7 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Homes' => App\Models\Home::class,
         'Users' => App\Models\User::class,
+        'Forecast' => Nwidart\LaravelForecast\ForecastFacade::class,
 
     ],
 

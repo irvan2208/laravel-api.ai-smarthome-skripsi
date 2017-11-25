@@ -17,19 +17,33 @@
     <link href="{{url('/')}}/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{url('/')}}/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+    <!-- Web fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,600,700&Open+Sans:300,400,600,700">
     <!-- Custom CSS -->
     <link href="{{url('/')}}/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{url('/')}}/css/animate.min.css">
+    <link rel="stylesheet" href="{{url('/')}}/css/ares.css">
     @stack('pushStyle')
 </head>
 <body>
-    <div class="container-fluid nopadding" id="map">
-        <div class="container">
-            <div class="col-md-12 text-center">
-                <img style="width: 30%;padding: 12px;" id="lqt-logo" src="{{ URL('/').'/img/logo.png' }}">
-            </div>
+
+    <div id="page-container" class="modern-sf">
+            <!-- Header -->
+            <header id="page-header">
+                <div class="h3 text-right pull-right hidden-xs">
+                    <div class="text-crystal font-w300">USER_LOGGED_IN</div>
+                    <!-- <div class="text-success animated infinite pulse pull-right">[LIVE]</div> -->
+                </div>
+                <h1 class="h3 font-w200">
+                    <span class="text-crystal">//</span> <a class="link-sf font-w300" href="index.html">SMART_HOME</a>
+                </h1>
+            </header>
+            <!-- END Header -->
+
+            <!-- Main Content -->
+            @yield('content')
+            <!-- END Main Content -->
         </div>
-        @yield('content')
-    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -40,5 +54,10 @@
     <script src="{{url('/')}}/bootstrap/dist/js/tether.min.js"></script>
     <script src="{{url('/')}}/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="{{url('/')}}/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+    <script src="{{url('/')}}/js/plugins/jquery.appear.min.js"></script>
+    <script src="{{url('/')}}/js/plugins/jquery.countTo.min.js"></script>
+    <script src="{{url('/')}}/js/plugins/jquery.easypiechart.min.js"></script>
+    <script src="{{url('/')}}/js/ares.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/js/svg-classes.js"></script>
     @stack('pushScript')
 </html>
