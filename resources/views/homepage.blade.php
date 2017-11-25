@@ -71,22 +71,41 @@ body {
                                     <line class="st2" x1="11.4" y1="133.2" x2="227.4" y2="133.2"/>
                                     <polyline class="st2" points="294.4,348.6 294.4,9.9 11.4,9.9 11.4,391.9 227.4,391.9     "/>
                                 </g>
-                                <g id="1">
-                                    <rect x="18.7" y="275.2" class="st0" width="269.3" height="110"/>
-                                    <text transform="matrix(1 0 0 1 132.3979 333.897)" class="st3 st4">Room 1</text>
-                                </g>
-                                <g id="2">
-                                    <rect x="18.7" y="140.6" class="st0" width="269.3" height="119.3"/>
-                                    <text id="Room_2_1_" transform="matrix(0.9218 0 0 1 132.3979 204.2075)" class="st3 st1">Room 2</text>
-                                </g>
-                                <g id="3">
-                                    <rect x="18.7" y="16.9" class="st0" width="269.3" height="110"/>
-                                    <text transform="matrix(1 0 0 1 132.3979 75.5635)" class="st3 st4">Room 1</text>
-                                </g>
-                                <g id="4">
-                                    <rect x="301.4" y="266.6" class="st0" width="134" height="117.7"/>
-                                    <text transform="matrix(1 0 0 1 348.064 333.2329)" class="st3 st4">Room 4</text>
-                                </g>
+                                @foreach($room as $singleroom)
+                                    @php
+                                        $style = '';
+                                        $class = '';
+                                        if ($singleroom->value) {
+                                            $class = 'on';
+                                            $style = 'fill: yellow; fill-opacity: 0.6;';
+                                        }
+                                    @endphp
+
+                                    @if($singleroom->entity_code=='room1')
+                                        <g class='{{$class}}' id="{{$singleroom->entity_code}}">
+                                            <rect x="18.7" y="275.2" class="st0" width="269.3" style="{{$style}}" height="110"/>
+                                            <text transform="matrix(1 0 0 1 132.3979 333.897)" class="st3 st4">Room 1</text>
+                                        </g>
+                                    @endif
+                                    @if($singleroom->entity_code=='room2')
+                                        <g class='{{$class}}' id="{{$singleroom->entity_code}}">
+                                            <rect x="18.7" y="140.6" class="st0" width="269.3" style="{{$style}}" height="119.3"/>
+                                            <text id="Room_2_1_" transform="matrix(0.9218 0 0 1 132.3979 204.2075)" class="st3 st1">Room 2</text>
+                                        </g>
+                                    @endif
+                                    @if($singleroom->entity_code=='room3')
+                                        <g class='{{$class}}' id="{{$singleroom->entity_code}}">
+                                            <rect x="18.7" y="16.9" class="st0" width="269.3" style="{{$style}}" height="110"/>
+                                            <text transform="matrix(1 0 0 1 132.3979 75.5635)" class="st3 st4">Room 3</text>
+                                        </g>
+                                    @endif
+                                    @if($singleroom->entity_code=='room4')
+                                        <g class='{{$class}}' id="{{$singleroom->entity_code}}">
+                                            <rect x="301.4" y="266.6" class="st0" width="134" style="{{$style}}" height="117.7"/>
+                                            <text transform="matrix(1 0 0 1 348.064 333.2329)" class="st3 st4">Room 4</text>
+                                        </g>
+                                    @endif
+                                @endforeach
                             </svg>
                         </div>
                     </div>
@@ -118,17 +137,19 @@ body {
                                 <h2 class="block-title visibility-hidden" data-toggle="appear" data-class="animated fadeInDown">Air Conditioner</h2>
                             </div>
                             <div class="block-content">
-                                <div class="row items-push overflow-hidden">
-                                    <div class="col-xs-4 text-center visibility-hidden" data-toggle="appear" data-class="animated fadeInLeft" data-timeout="300">
-                                        <div class="js-pie-chart pie-chart" data-percent="60" data-line-width="5" data-size="65" data-bar-color="rgba(255, 255, 255, .2)" data-track-color="rgba(255, 255, 255, .1)">
-                                            <span class="font-s16 font-w600">C&deg;</span>
+                                @foreach($aircons as $aircon)
+                                    <div class="row items-push overflow-hidden">
+                                        <div class="col-xs-4 text-center visibility-hidden" data-toggle="appear" data-class="animated fadeInLeft" data-timeout="300">
+                                            <div class="js-pie-chart pie-chart" data-percent="{{$aircon->value}}" data-line-width="5" data-size="65" data-bar-color="rgba(255, 255, 255, .2)" data-track-color="rgba(255, 255, 255, .1)">
+                                                <span class="font-s16 font-w600">C&deg;</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8 visibility-hidden" data-toggle="appear" data-class="animated fadeInRight" data-timeout="600">
+                                            <div class="text-uppercase font-w600 text-white-op">{{$aircon->entity_name}}</div>
+                                            <div class="font-s36 font-w300">{{$aircon->value}} &#8451;</div>
                                         </div>
                                     </div>
-                                    <div class="col-xs-8 visibility-hidden" data-toggle="appear" data-class="animated fadeInRight" data-timeout="600">
-                                        <div class="text-uppercase font-w600 text-white-op">Temperature</div>
-                                        <div class="font-s36 font-w300">5.3 &#8451;</div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <!-- END Environment -->
@@ -251,145 +272,120 @@ body {
       // setResponse("Loading...");
     }
     function setResponse(val) {
-      var respText = val.result.fulfillment.speech;
-      conversation.unshift("SmartHome: " + respText + '\r\n');
-      responsiveVoice.speak(respText);
-      $("#response").text(conversation.join(""));
+        console.log(val.result.parameters);
+        var respText = val.result.fulfillment.speech;
+        conversation.unshift("SmartHome: " + respText + '\r\n');
+        responsiveVoice.speak(respText);
+        $("#response").text(conversation.join(""));
+
+        var values = {
+            'entity': val.result.parameters.Entities,
+            'value': val.result.parameters.Turn,
+            '_token': '{{ csrf_token() }}'
+        };
+        $.ajax({
+            url: "{{route('update.entity')}}",
+            type: "POST",
+            data: values,
+        })
+        .done(function(data) {
+            if (data.entity.value==0) {
+                $('#'+data.entity.entity_code+'>rect').css({'fill-opacity': '0'});
+            }else{
+                $('#'+data.entity.entity_code+'>rect').css({'fill':' yellow','fill-opacity': '0.6'})
+            }
+        })
+        .fail(function(data) {
+            console.log(data);
+        });
     }
   </script>
 <script src="{{url('/')}}/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function () {
-
-      var dataTable = $('#room-table').DataTable({
-        dom: 'lrtip',
-        orderCellsTop: true,
-        responsive: true,
-        bLengthChange: false,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url:  '{{ route('homes.list') }}',
-            data: function(data) {
-                data._token = '{{ csrf_token() }}'
-            },
-            type: 'POST',
-        },
-        columns: [
-            { data: 'name' , name: 'name'},
-            { data: 'address', name: 'address'},
-        ],
-      });
-
-      $('#search').on('keyup', function() {
-          var value = $(this).val();
-          dataTable.search( value ).draw();
-      });
+    jQuery(function(){
+        // Init page helpers (Appear + CountTo + Easy Pie Chart plugins)
+        Ares.initHelpers(['appear', 'appear-countTo', 'easy-pie-chart']);
     });
-  </script>
-  <script>
-            jQuery(function(){
-                // Init page helpers (Appear + CountTo + Easy Pie Chart plugins)
-                Ares.initHelpers(['appear', 'appear-countTo', 'easy-pie-chart']);
-            });
-        </script>
-        <script>
-            var rooms=[
-                {
-                    "room_name": "Room 1",
-                    "room_code": "1",
-                    "area": "576"
-                },
-                {
-                    "room_name": "Room 2",
-                    "room_code": "2",
-                    "area": "600"
-                },
-                {
-                    "room_name": "Room 3",
-                    "room_code": "3",
-                    "area": "540"
-                },
-                {
-                    "room_name": "Room 4",
-                    "room_code": "4",
-                    "area": "288"
-                }
-            ];
-            var temp_array= rooms.map(function(item){
-                return item.area;
-            });
-            var highest_value = Math.max.apply(Math, temp_array);
-            
-            
-            $(function() {
-            $(".map g").click(function(){     
-                for(i = 0; i < rooms.length; i++) {
-                    if ( $(this)[i].hasClass("on") ) {
-                        $(this).children().first().css("fill-opacity", "0.0");
-                    } else {
-                        $(this).children().first().css("fill", "yellow");
-                        $(this).children().first().css("fill-opacity", "0.6");
-                    }
-                    $(this)[i].toggleClass("on");
-                }
-            });
-            
-            for(i = 0; i < rooms.length; i++) {
-                /*
-                $('#'+ rooms[i].room_code)
-                .css({'fill': 'rgba(11, 104, 170,' + rooms[i].area/highest_value +')'})
-                .data('room', rooms[i]);
-                */
-                $('#'+ rooms[i].room_code).data('room', rooms[i]);
+</script>
+<script>
+    var rooms=[
+        {
+            "room_name": "Room 1",
+            "room_code": "room1",
+            "area": "576"
+        },
+        {
+            "room_name": "Room 2",
+            "room_code": "room2",
+            "area": "600"
+        },
+        {
+            "room_name": "Room 3",
+            "room_code": "room3",
+            "area": "540"
+        },
+        {
+            "room_name": "Room 4",
+            "room_code": "room4",
+            "area": "288"
+        }
+    ];
+    var temp_array= rooms.map(function(item){
+        return item.area;
+    });
+    var highest_value = Math.max.apply(Math, temp_array);
+    
+    
+    $(function() {
+    $(".map g").click(function(){
+        for(i = 0; i < rooms.length; i++) {
+            if ( $(this)[i].hasClass("on") ) {
+                $(this).children().first().css("fill-opacity", "0.0");
+            } else {
+                $(this).children().first().css("fill", "yellow");
+                $(this).children().first().css("fill-opacity", "0.6");
             }
-            
-            $('.map g').mouseover(function (e) {
-                var room_data=$(this).data('room');
-                $('<div class="info_panel">'+
-                    room_data.room_name+ '<br>' +
-                    'Square: ' + room_data.area.toLocaleString("en-UK") + ' ft<sup>2</sup>' +
-                    '</div>'
-                 )
-                .appendTo('body');
-            })
-            .mouseleave(function () {
-                $('.info_panel').remove();
-            })
-            .mousemove(function(e) {
-                var mouseX = e.pageX, //X coordinates of mouse
-                    mouseY = e.pageY; //Y coordinates of mouse
+            $(this)[i].toggleClass("on");
+        }
+    });
+    
+    for(i = 0; i < rooms.length; i++) {
+        /*
+        $('#'+ rooms[i].room_code)
+        .css({'fill': 'rgba(11, 104, 170,' + rooms[i].area/highest_value +')'})
+        .data('room', rooms[i]);
+        */
+        $('#'+ rooms[i].room_code).data('room', rooms[i]);
+    }
+    
+    $('.map g').mouseover(function (e) {
+        var room_data=$(this).data('room');
+        $('<div class="info_panel">'+
+            room_data.room_name+ '<br>' +
+            'Square: ' + room_data.area.toLocaleString("en-UK") + ' ft<sup>2</sup>' +
+            '</div>'
+         )
+        .appendTo('body');
+    })
+    .mouseleave(function () {
+        $('.info_panel').remove();
+    })
+    .mousemove(function(e) {
+        var mouseX = e.pageX, //X coordinates of mouse
+            mouseY = e.pageY; //Y coordinates of mouse
 
-                $('.info_panel').css({
-                    top: mouseY-50,
-                    left: mouseX - ($('.info_panel').width()/2)
-                });
-            });
-            });
-            </script>
-            <script src="{{url('/')}}/js/skycons.js"></script>
-            {{-- <script>
-              var skycons = new Skycons({"color": "#ebebeb"}),
-                  list  = [
-                    "clear-day", "clear-night", "partly-cloudy-day",
-                    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-                    "fog"
-                  ],
-                  i;
-             
-                for(i = list.length; i--; ) {
-                    var weatherType = list[i],
-                        elements = document.getElementsByClassName( weatherType );
-                    for (e = elements.length; e--;){
-                        skycons.set( elements[e], weatherType );
-                    }
-                }
-             
-              skycons.play();
-            </script> --}}
-            <script type="text/javascript">
-                var skycons = new Skycons({'color':'#fff'});
-                skycons.add("weathericon", "{{$weather['currently']['icon']}}");
-                skycons.play();
-            </script>
+        $('.info_panel').css({
+            top: mouseY-50,
+            left: mouseX - ($('.info_panel').width()/2)
+        });
+    });
+    });
+    </script>
+
+    <script src="{{url('/')}}/js/skycons.js"></script>
+    <script type="text/javascript">
+        var skycons = new Skycons({'color':'#fff'});
+        skycons.add("weathericon", "{{$weather['currently']['icon']}}");
+        skycons.play();
+    </script>
 @endpush

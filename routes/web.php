@@ -25,7 +25,7 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'FrontendController@index')->name('homepage');
 
 Route::get('/test', 'VoiceController@test')->name('test');
@@ -35,6 +35,7 @@ Route::resource('admin/home', 'HomeController');
 
 Route::post('admin/user/lists', 'UserController@dataTable')->name('users.list');
 Route::post('admin/home/lists', 'HomeController@dataTable')->name('homes.list');
+Route::post('/', 'EntityController@updateEntity')->name('update.entity');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {

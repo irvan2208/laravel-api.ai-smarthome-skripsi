@@ -235,6 +235,7 @@ return [
         'Homes' => App\Models\Home::class,
         'Users' => App\Models\User::class,
         'Forecast' => Nwidart\LaravelForecast\ForecastFacade::class,
+        'EntityType' => App\Helpers\Enums\EntityType::class,
 
     ],
 
