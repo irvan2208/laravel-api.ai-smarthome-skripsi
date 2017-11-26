@@ -29,14 +29,14 @@ class EntityTableSeeder extends Seeder
 
         $entity = new Entity;
         $entity->entity_code = 'room3';
-        $entity->entity_name = 'Room three';
+        $entity->entity_name = 'Bed Room';
         $entity->value = 0;
         $entity->type = EntityType::ROOM;
         $entity->save();
 
         $entity = new Entity;
         $entity->entity_code = 'room4';
-        $entity->entity_name = 'Room four';
+        $entity->entity_name = 'Living Room';
         $entity->value = 0;
         $entity->type = EntityType::ROOM;
         $entity->save();

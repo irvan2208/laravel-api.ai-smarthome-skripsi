@@ -83,25 +83,25 @@ body {
                                     @if($singleroom->entity_code=='room1')
                                         <g class='{{$class}}' id="{{$singleroom->entity_code}}">
                                             <rect x="18.7" y="275.2" class="st0" width="269.3" style="{{$style}}" height="110"/>
-                                            <text transform="matrix(1 0 0 1 132.3979 333.897)" class="st3 st4">Room 1</text>
+                                            <text transform="matrix(1 0 0 1 132.3979 333.897)" class="st3 st4">{{$singleroom->entity_name}}</text>
                                         </g>
                                     @endif
                                     @if($singleroom->entity_code=='room2')
                                         <g class='{{$class}}' id="{{$singleroom->entity_code}}">
                                             <rect x="18.7" y="140.6" class="st0" width="269.3" style="{{$style}}" height="119.3"/>
-                                            <text id="Room_2_1_" transform="matrix(0.9218 0 0 1 132.3979 204.2075)" class="st3 st1">Room 2</text>
+                                            <text id="Room_2_1_" transform="matrix(0.9218 0 0 1 132.3979 204.2075)" class="st3 st1">{{$singleroom->entity_name}}</text>
                                         </g>
                                     @endif
                                     @if($singleroom->entity_code=='room3')
                                         <g class='{{$class}}' id="{{$singleroom->entity_code}}">
                                             <rect x="18.7" y="16.9" class="st0" width="269.3" style="{{$style}}" height="110"/>
-                                            <text transform="matrix(1 0 0 1 132.3979 75.5635)" class="st3 st4">Room 3</text>
+                                            <text transform="matrix(1 0 0 1 132.3979 75.5635)" class="st3 st4">{{$singleroom->entity_name}}</text>
                                         </g>
                                     @endif
                                     @if($singleroom->entity_code=='room4')
                                         <g class='{{$class}}' id="{{$singleroom->entity_code}}">
                                             <rect x="301.4" y="266.6" class="st0" width="134" style="{{$style}}" height="117.7"/>
-                                            <text transform="matrix(1 0 0 1 348.064 333.2329)" class="st3 st4">Room 4</text>
+                                            <text transform="matrix(1 0 0 1 348.064 333.2329)" class="st3 st4">{{$singleroom->entity_name}}</text>
                                         </g>
                                     @endif
                                 @endforeach
@@ -109,7 +109,6 @@ body {
                         </div>
                     </div>
                     <!-- END Animated Circles Column -->
-
                     <!-- Left Column -->
                     <div class="col-sm-6 col-lg-3 col-lg-pull-6">
                         <!-- Planets -->
@@ -139,13 +138,13 @@ body {
                                 @foreach($aircons as $aircon)
                                     <div class="row items-push overflow-hidden">
                                         <div class="col-xs-4 text-center visibility-hidden" data-toggle="appear" data-class="animated fadeInLeft" data-timeout="300">
-                                            <div class="js-pie-chart pie-chart" data-percent="{{$aircon->value}}" data-line-width="5" data-size="65" data-bar-color="rgba(255, 255, 255, .2)" data-track-color="rgba(255, 255, 255, .1)">
+                                            <div class="js-pie-chart pie-chart" data-percent="{{$aircon->value-16}}0" data-line-width="5" data-size="65" data-bar-color="rgba(255, 255, 255, .2)" data-track-color="rgba(255, 255, 255, .1)">
                                                 <span class="font-s16 font-w600">C&deg;</span>
                                             </div>
                                         </div>
                                         <div class="col-xs-8 visibility-hidden" data-toggle="appear" data-class="animated fadeInRight" data-timeout="600">
                                             <div class="text-uppercase font-w600 text-white-op">{{$aircon->entity_name}}</div>
-                                            <div class="font-s36 font-w300">{{$aircon->value}} &#8451;</div>
+                                            <div class="font-s36 font-w300"><span id="span-{{$aircon->entity_code}}" class="counter-value" data-count="{{$aircon->value}}">OFF</span>&#8451;</div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -190,10 +189,41 @@ body {
 @push('pushScript')
   <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
   <script type="text/javascript">
+
     var accessToken = "a3d7bfa4b7a54289a1c4622aeab6daca";
     var baseUrl = "https://api.api.ai/v1/";
     var conversation = [];
     $(document).ready(function() {
+        $('.counter-value').each(function() {
+              var $this = $(this),
+                countTo = $this.attr('data-count');
+              $({
+                countNum: $this.text()
+              }).animate({
+                  countNum: countTo
+                },
+
+                {
+
+                  duration: 4000,
+                  easing: 'swing',
+                  step: function() {
+                    $this.html(Math.floor(this.countNum));
+                  },
+                  complete: function() {
+                    $this.html(this.countNum);
+                    //alert('finished');
+                  }
+
+                });
+            });
+        // $(window).keypress(function (e) {
+        //   if (e.keyCode === 0 || e.keyCode === 13) {
+        //     e.preventDefault();
+        //     $("#rec").click();
+        //   }
+        // })
+
       $("#input").keypress(function(event) {
         if (event.which == 13) {
           event.preventDefault();

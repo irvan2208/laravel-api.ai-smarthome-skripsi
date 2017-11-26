@@ -58,6 +58,7 @@
     <script src="{{url('/')}}/js/plugins/jquery.countTo.min.js"></script>
     <script src="{{url('/')}}/js/plugins/jquery.easypiechart.min.js"></script>
     <script src="{{url('/')}}/js/ares.js"></script>
+    <script src="{{url('/')}}/js/jquery.animateNumber.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/svg-classes.js"></script>
     @stack('pushScript')
 </html>
