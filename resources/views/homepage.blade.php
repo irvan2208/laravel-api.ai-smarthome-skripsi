@@ -310,6 +310,7 @@ body {
         var values = {
             'entity': val.result.parameters.Entities,
             'value': val.result.parameters.Turn,
+            'numberinteger': val.result.parameters.numberinteger,
             '_token': '{{ csrf_token() }}'
         };
         $.ajax({
@@ -319,12 +320,14 @@ body {
         })
         .done(function(data) {
             $(data.entity).each(function( index, value ) {
-                console.log('asdf');
-                console.log(value);
-                if (value.value==0) {
-                    $('#'+value.entity_code+'>rect').css({'fill-opacity': '0'});
+                if (value.type == 1) {
+                    $('#span-'+value.entity_code).text(value.value);
                 }else{
-                    $('#'+value.entity_code+'>rect').css({'fill':' yellow','fill-opacity': '0.6'})
+                    if (value.value==0) {
+                        $('#'+value.entity_code+'>rect').css({'fill-opacity': '0'});
+                    }else{
+                        $('#'+value.entity_code+'>rect').css({'fill':' yellow','fill-opacity': '0.6'})
+                    }
                 }
             });
         })
