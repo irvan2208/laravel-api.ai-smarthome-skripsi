@@ -318,11 +318,15 @@ body {
             data: values,
         })
         .done(function(data) {
-            if (data.entity.value==0) {
-                $('#'+data.entity.entity_code+'>rect').css({'fill-opacity': '0'});
-            }else{
-                $('#'+data.entity.entity_code+'>rect').css({'fill':' yellow','fill-opacity': '0.6'})
-            }
+            $(data.entity).each(function( index, value ) {
+                console.log('asdf');
+                console.log(value);
+                if (value.value==0) {
+                    $('#'+value.entity_code+'>rect').css({'fill-opacity': '0'});
+                }else{
+                    $('#'+value.entity_code+'>rect').css({'fill':' yellow','fill-opacity': '0.6'})
+                }
+            });
         })
         .fail(function(data) {
             console.log(data);
