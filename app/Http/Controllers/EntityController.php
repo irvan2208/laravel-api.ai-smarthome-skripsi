@@ -9,8 +9,12 @@ class EntityController extends Controller
 {
     public function updateEntity(Request $request)
     {
+        $entity_array = $request->entity;
+        if ($request->entity[0] == 'allroom') {
+            $entity_array = Entity::where('type',0)->pluck('entity_code');
+        }
         $entity_return = [];
-        foreach ($request->entity as $ent) {
+        foreach ($entity_array as $ent) {
             $entity = Entity::where('entity_code',$ent)->first();
             $val = 1;
             if ($request->value == 'off') {
