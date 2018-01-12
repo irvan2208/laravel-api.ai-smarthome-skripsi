@@ -319,6 +319,7 @@ body {
             data: values,
         })
         .done(function(data) {
+            console.log(data);
             $(data.entity).each(function( index, value ) {
                 if (value.type == 1) {
                     $('#span-'+value.entity_code).text(value.value);

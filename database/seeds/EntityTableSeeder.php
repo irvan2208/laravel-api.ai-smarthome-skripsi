@@ -43,15 +43,15 @@ class EntityTableSeeder extends Seeder
 
         $entity = new Entity;
         $entity->entity_code = 'aircon1';
-        $entity->entity_name = 'Air Conditioner one';
-        $entity->value = 0;
+        $entity->entity_name = 'Bedroom Air Conditioner';
+        $entity->value = 20;
         $entity->type = EntityType::AIRCON;
         $entity->save();
 
         $entity = new Entity;
         $entity->entity_code = 'aircon2';
-        $entity->entity_name = 'Air Conditioner two';
-        $entity->value = 0;
+        $entity->entity_name = 'Living Room Air Conditioner';
+        $entity->value = 18;
         $entity->type = EntityType::AIRCON;
         $entity->save();
 
