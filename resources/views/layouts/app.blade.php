@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Smart Home Dashboard</title>
+    <link rel="icon" href="{{url('/')}}/favicon.ico?v=2" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
