@@ -35,7 +35,7 @@
                     <!-- <div class="text-success animated infinite pulse pull-right">[LIVE]</div> -->
                 </div>
                 <h1 class="h3 font-w200">
-                    <span class="text-crystal">//</span> <a class="link-sf font-w300" href="index.html">SMART_HOME</a>
+                    <span class="text-crystal">//</span> <a class="link-sf font-w300" href="{{url('/')}}">SMART_HOME | Irvan Santoso (1431059)</a>
                 </h1>
             </header>
             <!-- END Header -->
