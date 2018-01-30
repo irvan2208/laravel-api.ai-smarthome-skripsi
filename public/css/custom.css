@@ -18,7 +18,7 @@ html, body {
 .navbar.navbar-fixed-bottom.mic-place {
     border-top: 1px solid rgba(255, 255, 255, .07);
     bottom: 0;
-    position: absolute;
+    position: fixed;
 }
 
 .nopadding {
@@ -53,3 +53,9 @@ html, body {
     resize: none;
 }
 /*asdf*/
+
+@media (max-width: 769px) {
+    .map svg {
+        width: 100%;
+    }
+}
