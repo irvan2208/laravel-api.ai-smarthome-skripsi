@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Smart Home Dashboard</title>
+    <link rel="icon" href="{{url('/')}}/favicon.ico?v=2" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -35,7 +36,7 @@
                     <!-- <div class="text-success animated infinite pulse pull-right">[LIVE]</div> -->
                 </div>
                 <h1 class="h3 font-w200">
-                    <span class="text-crystal">//</span> <a class="link-sf font-w300" href="index.html">SMART_HOME</a>
+                    <span class="text-crystal">//</span> <a class="link-sf font-w300" href="{{url('/')}}">SMART_HOME | Irvan Santoso (1431059)</a>
                 </h1>
             </header>
             <!-- END Header -->
